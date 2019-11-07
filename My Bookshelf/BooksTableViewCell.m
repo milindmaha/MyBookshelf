@@ -47,7 +47,7 @@
 	}
 	stackView = [[UIStackView alloc] init];
 	stackView.axis = UILayoutConstraintAxisVertical;
-	stackView.spacing = 3;
+	stackView.spacing = 8;
 	stackView.layoutMargins = UIEdgeInsetsMake(8, 8, 8, 8);
 	[stackView setLayoutMarginsRelativeArrangement:true];
 	
