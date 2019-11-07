@@ -49,10 +49,12 @@
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 
+	__weak __typeof__(self) weakSelf = self;
 	[[NSNotificationCenter defaultCenter] addObserverForName:@"InterfaceOrientationChanged" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
-		[self orientationChanged];
+		[weakSelf orientationChanged];
 	}];
 
+	[self orientationChanged];
 	if (self.selectedIndexPath) {
 			[self.tableView deselectRowAtIndexPath:self.selectedIndexPath animated:animated];
 	}
