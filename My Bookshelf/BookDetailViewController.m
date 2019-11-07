@@ -35,8 +35,9 @@
 	[super viewDidAppear:animated];
 
 	self.title = self.book.title;
+	__weak __typeof__(self) weakSelf = self;
 	[[NSNotificationCenter defaultCenter] addObserverForName:@"InterfaceOrientationChanged" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
-		[self setConstraints];
+		[weakSelf setConstraints];
 	}];
 	[self getBookDetails];
 	[self setConstraints];
@@ -46,6 +47,7 @@
 	[super viewDidDisappear:animated];
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
 - (void)addSwipeGestures {
 	UISwipeGestureRecognizer *right = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(loadPrevious)];
 	right.numberOfTouchesRequired = 1;

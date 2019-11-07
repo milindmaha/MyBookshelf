@@ -26,17 +26,12 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
+	_activityIndicator.center = self.view.center;
+
 	if ([[AppSetting sharedSetting] selectedMode] == kNewMode) {
 		[self addRefreshControl];
-
-		_activityIndicator.center = self.view.center;
-		[_activityIndicator startAnimating];
-
 		[self getBookList];
 	} else {
-
-		[_activityIndicator setHidden:true];
-
 		UISearchBar *searchBar = [[UISearchBar alloc] init];
 		searchBar.searchBarStyle = UISearchBarStyleProminent;
 		searchBar.delegate = self;
@@ -54,14 +49,23 @@
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 
+	[[NSNotificationCenter defaultCenter] addObserverForName:@"InterfaceOrientationChanged" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+		[self orientationChanged];
+	}];
+
 	if (self.selectedIndexPath) {
 			[self.tableView deselectRowAtIndexPath:self.selectedIndexPath animated:animated];
 	}
 }
 
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator {
-	[super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+- (void)viewDidDisappear:(BOOL)animated {
+	[super viewDidDisappear:animated];
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)orientationChanged {
 	[self.tableView reloadData];
+	_activityIndicator.center = self.view.center;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -85,6 +89,8 @@
 }
 
 - (void)getBookList {
+	[_activityIndicator startAnimating];
+
 	__weak __typeof__(self) weakSelf = self;
 	[ConnectionHelper getBookList:^(NSArray * _Nullable booklist) {
 		dispatch_async(dispatch_get_main_queue(), ^{
@@ -106,6 +112,7 @@
 	}
 
 	__weak __typeof__(self) weakSelf = self;
+	[_activityIndicator startAnimating];
 	[ConnectionHelper searchBookList:self.searchQuery pageNumber:page onCompletion:^(NSArray * _Nullable booklist) {
 		dispatch_async(dispatch_get_main_queue(), ^{
 			if (weakSelf.booklist) {
@@ -113,6 +120,7 @@
 			} else {
 				weakSelf.booklist = booklist.mutableCopy;
 			}
+			[weakSelf.activityIndicator stopAnimating];
 			[weakSelf.tableView reloadData];
 		});
 	}];
