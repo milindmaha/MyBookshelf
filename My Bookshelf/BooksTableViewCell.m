@@ -9,6 +9,12 @@
 #import "BooksTableViewCell.h"
 #import "ConnectionHelper.h"
 
+@interface BooksTableViewCell() {
+	UIStackView *stackView;
+}
+
+@end
+
 @implementation BooksTableViewCell
 
 - (void)awakeFromNib {
@@ -18,11 +24,6 @@
 - (void)prepareForReuse {
 	[super prepareForReuse];
 	self.iconImageView.image = nil;
-	for (id subview in self.stackView.arrangedSubviews) {
-		if ([subview isKindOfClass:[UILabel class]]) {
-			[subview removeFromSuperview];
-		}
-	}
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -40,22 +41,39 @@
 		});
 	}];
 
+	if (stackView) {
+		[stackView removeFromSuperview];
+		stackView = nil;
+	}
+	stackView = [[UIStackView alloc] init];
+	stackView.axis = UILayoutConstraintAxisVertical;
+	stackView.spacing = 3;
+	stackView.layoutMargins = UIEdgeInsetsMake(8, 8, 8, 8);
+	[stackView setLayoutMarginsRelativeArrangement:true];
+	
 	if (book.isbn13) {
 		UILabel *isbnLabel = [self getLabelWithText:book.isbn13];
-		[self.stackView addArrangedSubview:isbnLabel];
+		[stackView addArrangedSubview:isbnLabel];
 	}
 	if (book.title) {
 		UILabel *titleLabel = [self getLabelWithText:book.title];
-		[self.stackView addArrangedSubview:titleLabel];
+		[stackView addArrangedSubview:titleLabel];
 	}
 	if (book.subtitle) {
 		UILabel *subtitleLabel = [self getLabelWithText:book.subtitle];
-		[self.stackView addArrangedSubview:subtitleLabel];
+		[stackView addArrangedSubview:subtitleLabel];
 	}
 	if (book.price) {
 		UILabel *priceLabel = [self getLabelWithText:book.price];
-		[self.stackView addArrangedSubview:priceLabel];
+		[stackView addArrangedSubview:priceLabel];
 	}
+	stackView.translatesAutoresizingMaskIntoConstraints = false;
+	[self.contentView addSubview:stackView];
+
+	[[stackView.topAnchor constraintEqualToAnchor:self.contentView.topAnchor] setActive:true];
+	[[stackView.rightAnchor constraintEqualToAnchor:self.contentView.rightAnchor] setActive:true];
+	[[stackView.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor] setActive:true];
+	[[stackView.leftAnchor constraintEqualToAnchor:self.iconImageView.rightAnchor] setActive:true];
 }
 
 - (UILabel *)getLabelWithText:(NSString *)text {

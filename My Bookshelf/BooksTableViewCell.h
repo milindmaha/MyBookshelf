@@ -14,7 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BooksTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
-@property (nonatomic, weak) IBOutlet UIStackView *stackView;
 
 @property Book *book;
 

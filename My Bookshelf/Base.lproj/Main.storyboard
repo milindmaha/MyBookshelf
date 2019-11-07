@@ -32,23 +32,15 @@
                                                         <constraint firstAttribute="width" constant="97" id="cIZ-F1-Bia"/>
                                                     </constraints>
                                                 </imageView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="BLh-hC-wck">
-                                                    <rect key="frame" x="113" y="8" width="293" height="108"/>
-                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="BLh-hC-wck" secondAttribute="bottom" constant="8" id="08d-fS-cy3"/>
                                                 <constraint firstItem="ub5-Q1-T6e" firstAttribute="top" secondItem="a0p-lw-t01" secondAttribute="top" constant="8" id="GXA-Tl-WsK"/>
-                                                <constraint firstAttribute="trailing" secondItem="BLh-hC-wck" secondAttribute="trailing" constant="8" id="NeC-Xj-Cfc"/>
-                                                <constraint firstItem="BLh-hC-wck" firstAttribute="leading" secondItem="ub5-Q1-T6e" secondAttribute="trailing" constant="8" id="Q5A-lu-97e"/>
                                                 <constraint firstItem="ub5-Q1-T6e" firstAttribute="leading" secondItem="a0p-lw-t01" secondAttribute="leading" constant="8" id="YLL-hh-QSI"/>
                                                 <constraint firstAttribute="bottom" secondItem="ub5-Q1-T6e" secondAttribute="bottom" constant="8" id="YfV-ar-Fy7"/>
-                                                <constraint firstItem="BLh-hC-wck" firstAttribute="top" secondItem="a0p-lw-t01" secondAttribute="top" constant="8" id="iiP-XE-fSt"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="iconImageView" destination="ub5-Q1-T6e" id="DOl-V1-0O2"/>
-                                            <outlet property="stackView" destination="BLh-hC-wck" id="bR4-5l-Rb5"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -92,14 +84,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a2o-as-mSk">
-                                <rect key="frame" x="107" y="52" width="200" height="220"/>
+                                <rect key="frame" x="107" y="96" width="200" height="220"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="220" id="YuT-Dm-xI8"/>
                                     <constraint firstAttribute="width" constant="200" id="jXt-lZ-O9u"/>
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ER4-11-La9">
-                                <rect key="frame" x="8" y="280" width="398" height="582"/>
+                                <rect key="frame" x="8" y="324" width="398" height="489"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Wdu-YL-7nt" id="kp5-pd-VxD"/>
@@ -188,7 +180,6 @@
         <!--New-->
         <scene sceneID="fa0-60-DFF">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Xv1-rh-n0R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XsI-nT-iHm" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="New" image="first" id="acW-dT-cKf"/>
                     <toolbarItems/>
@@ -201,13 +192,13 @@
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="Aq9-Mg-qWF"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xv1-rh-n0R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="749.27536231884062" y="-320.08928571428572"/>
         </scene>
         <!--Search-->
         <scene sceneID="DXI-Yp-qxB">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="H0G-H1-Iik" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ubP-6T-zSd" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Search" image="second" id="cPa-gy-q4n"/>
                     <toolbarItems/>
@@ -220,6 +211,7 @@
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="gZh-nK-kuC"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H0G-H1-Iik" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="749.27536231884062" y="359.59821428571428"/>
         </scene>
@@ -229,7 +221,7 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vLj-oF-76g"/>
+        <segue reference="edH-qi-mhA"/>
         <segue reference="gZh-nK-kuC"/>
     </inferredMetricsTieBreakers>
 </document>
