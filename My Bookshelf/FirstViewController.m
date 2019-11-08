@@ -148,7 +148,7 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
 	if ([[AppSetting sharedSetting] selectedMode] == kSearchMode) {
 		NSIndexPath *indexPath = [[self.tableView indexPathsForVisibleRows] lastObject];
-		if (indexPath.row == self.booklist.count-1) {
+		if (self.booklist.count >= 10 && indexPath.row == self.booklist.count-1) {
 			int pageNumber = (int)self.booklist.count/10;
 			[self searchBooklistWithPageNumber:pageNumber+1];
 			NSLog(@"fetch more");
